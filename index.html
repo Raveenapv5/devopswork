@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vipul R — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --accent: #c8f542;
+      --text: #f0ede6;
+      --muted: #888;
+      --border: #2a2a2a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      padding: 100px 60px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+    }
+
+    .hero-left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .hero-left h1 span { color: var(--accent); }
+
+    .hero-left p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 420px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0d0d0d;
+      border: none;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* COLLEGE CARD */
+    .college-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .college-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .college-badge {
+      display: inline-block;
+      background: rgba(200, 245, 66, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(200, 245, 66, 0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .college-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .college-card .degree {
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .college-card .desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .college-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item { text-align: center; }
+    .meta-item .val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+    .meta-item .key {
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      padding: 0 60px;
+      margin: 0 0 60px;
+    }
+    .divider hr { border: none; border-top: 1px solid var(--border); }
+
+    /* SKILLS */
+    .section { padding: 0 60px 80px; }
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      transition: border-color 0.2s;
+    }
+    .skill-item:hover { border-color: var(--accent); }
+
+    .skill-item .skill-name {
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .skill-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    .project-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .project-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      padding: 60px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .contact-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+    }
+
+    .contact-section h2 span { color: var(--accent); }
+
+    .contact-links { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .contact-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      nav, .hero, .section, .contact-section, .divider { padding-left: 24px; padding-right: 24px; }
+      .hero { grid-template-columns: 1fr; padding-top: 60px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Vipul R.</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="hero-left">
+      <h1>Hi, I'm<br/><span>Vipul R.</span></h1>
+      <p>
+        A passionate Computer Science student building real-world solutions through code,
+        data, and AI. Currently exploring full-stack development, databases, and intelligent systems.
+      </p>
+      <div class="cta-row">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="college-card">
+      <div class="college-badge">Education</div>
+      <h2>Your College Name Here</h2>
+      <div class="degree">B.E. / B.Tech — Computer Science & Engineering</div>
+      <p class="desc">
+        Currently pursuing my undergraduate degree with a focus on software engineering,
+        database systems, and web technologies. Passionate about building impactful products
+        and applying AI to solve real problems.
+      </p>
+      <div class="college-meta">
+        <div class="meta-item">
+          <div class="val">2026</div>
+          <div class="key">Graduating</div>
+        </div>
+        <div class="meta-item">
+          <div class="val">8.5</div>
+          <div class="key">CGPA</div>
+        </div>
+        <div class="meta-item">
+          <div class="val">3+</div>
+          <div class="key">Projects</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-label">Skills & Technologies</div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-name">Python</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">SQL / DBMS</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">HTML & CSS</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Django</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Java</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Git & GitHub</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-label">Projects</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-tag">Web Development</div>
+        <h3>Project One</h3>
+        <p>A brief description of what this project does, what problem it solves, and the technologies used to build it.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-tag">AI / ML</div>
+        <h3>Project Two</h3>
+        <p>A brief description of what this project does, what problem it solves, and the technologies used to build it.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-tag">Database</div>
+        <h3>Project Three</h3>
+        <p>A brief description of what this project does, what problem it solves, and the technologies used to build it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact">
+    <h2>Let's <span>connect.</span></h2>
+    <div class="contact-links">
+      <a href="vipulr232005@gmail.com" class="contact-link">📧 Email</a>
+      <a href="https://github.com/" class="contact-link">🐙 GitHub</a>
+      <a href="https://linkedin.com/" class="contact-link">💼 LinkedIn</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Vipul R. — Built with HTML & CSS
+  </footer>
+
+</body>
+</html>
